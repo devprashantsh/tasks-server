@@ -1,7 +1,18 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
+import {  TasksDatabase } from "./db";
+import boardsRoutes from "./routes/boards-route";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+const app = new Elysia()
+.decorate('db', new TasksDatabase())
+.get("/", () => {
+  return {message: "hello tasks server"}
+})
 
+
+app.use(boardsRoutes)
+
+
+app.listen(4000);
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  `Elysia server is running at ${app.server?.hostname}:${app.server?.port}`
 );
