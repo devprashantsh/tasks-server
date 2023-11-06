@@ -5,13 +5,14 @@ This API provides endpoints to manage a Kanban board, including creating, retrie
 
 ## Base URL
 
-The base URL for all endpoints is: `http://your-api-url.com/v1/boards`
+The base URL for all endpoints is: `http://your-api-url.com/v1`
+for local environment it is : `http://localhost:4000/v1`
 
 ## Endpoints
 
 ### Create a Board
 
-- **Endpoint:** POST `/`
+- **Endpoint:** POST `/boards`
 - **Description:** Create a new Kanban board.
 - **Request Body:**
   ```json
@@ -30,19 +31,19 @@ The base URL for all endpoints is: `http://your-api-url.com/v1/boards`
 
 ### Get All Boards
 
-- **Endpoint:** GET `/`
+- **Endpoint:** GET `/boards`
 - **Description:** Retrieve a list of all Kanban boards.
 
 ### Get Board Details
 
-- **Endpoint:** GET `/:id`
+- **Endpoint:** GET `/boards/:id`
 - **Description:** Retrieve detailed information about a specific Kanban board.
 - **URL Parameters:**
   - `id` (string): The unique ID of the board.
 
 ### Update Board
 
-- **Endpoint:** PUT `/:id`
+- **Endpoint:** PUT `/boards/:id`
 - **Description:** Update the properties of a specific Kanban board.
 - **URL Parameters:**
   - `id` (string): The unique ID of the board.
@@ -62,7 +63,7 @@ The base URL for all endpoints is: `http://your-api-url.com/v1/boards`
 
 ### Delete Board
 
-- **Endpoint:** DELETE `/:id`
+- **Endpoint:** DELETE `/boards/:id`
 - **Description:** Delete a specific Kanban board.
 - **URL Parameters:**
   - `id` (string): The unique ID of the board.
