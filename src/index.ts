@@ -1,6 +1,6 @@
 import { Elysia, t } from "elysia";
 import { TasksDatabase } from "./db";
-import BoardsRoutes from "./routes/boards-route";
+import boardsRoutes from "./routes/boards-route";
 
 class TasksServer {
   private app: Elysia;
@@ -15,7 +15,7 @@ class TasksServer {
     this.app.group("/v1", (app) =>
       app
         .get("/", this.getHelloMessage)
-        .group("/boards", (app) => BoardsRoutes)
+        .use(boardsRoutes)
     );
   }
 
