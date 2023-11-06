@@ -1,6 +1,4 @@
 
-
-```markdown
 # Kanban Board API Documentation
 
 This API provides endpoints to manage a Kanban board, including creating, retrieving, updating, and deleting boards. It also allows you to manage tasks within the board.
