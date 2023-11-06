@@ -6,7 +6,8 @@ class TasksServer {
   private app: Elysia;
 
   constructor() {
-    this.app = new Elysia().decorate("db", new TasksDatabase());
+    this.app = new Elysia()
+    // .decorate("db", new TasksDatabase());
     this.configureRoutes();
     this.startServer();
   }
