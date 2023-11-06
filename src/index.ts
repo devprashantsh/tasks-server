@@ -1,18 +1,32 @@
 import { Elysia, t } from "elysia";
-import {  TasksDatabase } from "./db";
-import boardsRoutes from "./routes/boards-route";
+import { TasksDatabase } from "./db";
+import BoardsRoutes from "./routes/boards-route";
 
-const app = new Elysia()
-.decorate('db', new TasksDatabase())
-.get("/", () => {
-  return {message: "hello tasks server"}
-})
+class TasksServer {
+  private app: Elysia;
 
+  constructor() {
+    this.app = new Elysia().decorate("db", new TasksDatabase());
+    this.configureRoutes();
+    this.startServer();
+  }
 
-app.use(boardsRoutes)
+  private configureRoutes() {
+    this.app.group("/v1", (app) =>
+      app
+        .get("/", this.getHelloMessage)
+        .group("/boards", (app) => BoardsRoutes)
+    );
+  }
 
+  private getHelloMessage = () => {
+    return { message: "hello tasks server" };
+  };
 
-app.listen(4000);
-console.log(
-  `Elysia server is running at ${app.server?.hostname}:${app.server?.port}`
-);
+  private startServer() {
+    this.app.listen(4000);
+    console.log(`Elysia server is running at ${this.app.server?.hostname}:${this.app.server?.port}`);
+  }
+}
+
+new TasksServer();

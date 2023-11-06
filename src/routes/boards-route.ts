@@ -23,6 +23,7 @@ class BoardsRoutes {
     this.boards.push({
       id,
       name: body.name,
+      description: body.description,
     });
     return { success: true, id };
   };
