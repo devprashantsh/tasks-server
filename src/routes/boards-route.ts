@@ -1,4 +1,4 @@
-import { Elysia, ElysiaConfig, t } from "elysia";
+import { Elysia } from "elysia";
 import BoardsController from "../controllers/boards-controller";
 
 class BoardsRoutes {
@@ -9,8 +9,7 @@ class BoardsRoutes {
     this.boardsRoutes = new Elysia({ prefix: "/boards" });
   }
   private defineRoutes() {
-    // Bind controller methods to the class instance
-    this.boardsRoutes.get("/", this.boardsController.getBoards.bind(this));
+    this.boardsRoutes.get("/", this.boardsController.getBoards)
     this.boardsRoutes.post("/", this.boardsController.addBoard);
     this.boardsRoutes.put("/:id", this.boardsController.updateBoard);
     this.boardsRoutes.get("/:id", this.boardsController.getBoard);

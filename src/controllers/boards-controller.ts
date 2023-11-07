@@ -9,7 +9,6 @@ class BoardsController {
   };
 
   public addBoard = ({ body }: { body: IBoard }) => {
-    console.log("got called add board");
     const id = generateUniqueId(10);
     this.boards.push({
       id,
