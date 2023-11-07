@@ -16,7 +16,12 @@ class TasksServer {
           secret: process.env.JWT_SECRET,
         })
       )
-      .use(cookie());
+      .use(cookie())
+      // .derive(({ request: { headers }, store }) => {
+      //   return {
+      //     authorization: headers.get("Authorization"),
+      //   };
+      // });
 
     // .decorate("db", new TasksDatabase());
     this.configureRoutes();
@@ -25,10 +30,7 @@ class TasksServer {
 
   private configureRoutes() {
     this.app.group("/v1", (app) =>
-      app
-        .get("/", this.getHelloMessage)
-        .use(boardsRoutes)
-        .use(authRoutes)
+      app.get("/", this.getHelloMessage).use(boardsRoutes).use(authRoutes)
     );
   }
 

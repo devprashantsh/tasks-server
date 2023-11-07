@@ -1,5 +1,6 @@
 import { Elysia } from "elysia";
 import BoardsController from "../controllers/boards-controller";
+import authorize from "../middlewares/authorise";
 
 class BoardsRoutes {
   private boardsRoutes: Elysia;
@@ -9,15 +10,25 @@ class BoardsRoutes {
     this.boardsRoutes = new Elysia({ prefix: "/boards" });
   }
   private defineRoutes() {
-    this.boardsRoutes.get("/", this.boardsController.getBoards)
-    this.boardsRoutes.post("/", this.boardsController.addBoard);
-    this.boardsRoutes.put("/:id", this.boardsController.updateBoard);
-    this.boardsRoutes.get("/:id", this.boardsController.getBoard);
-    this.boardsRoutes.delete("/:id", this.boardsController.deleteBoard);
+    this.boardsRoutes.get("/", this.boardsController.getBoards, {
+      beforeHandle: [authorize],
+    });
+    this.boardsRoutes.post("/", this.boardsController.addBoard, {
+      beforeHandle: [authorize],
+    });
+    this.boardsRoutes.put("/:id", this.boardsController.updateBoard, {
+      beforeHandle: [authorize],
+    });
+    this.boardsRoutes.get("/:id", this.boardsController.getBoard, {
+      beforeHandle: [authorize],
+    });
+    this.boardsRoutes.delete("/:id", this.boardsController.deleteBoard, {
+      beforeHandle: [authorize],
+    });
   }
 
   public getRoutes() {
-    this.defineRoutes()
+    this.defineRoutes();
     return this.boardsRoutes;
   }
 }

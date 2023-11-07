@@ -10,7 +10,7 @@ class AuthRoutes {
   }
   private defineRoutes() {
     this.authRoutes.post("/sign-in", this.authController.signin);
-    this.authRoutes.put("/sign-up", this.authController.signup);
+    this.authRoutes.post("/sign-up", this.authController.signup);
   }
 
   public getRoutes() {
